@@ -6,15 +6,20 @@ import { MobileNavDrawer } from "./MobileNavDrawer";
 import { MobileNavToggleButton } from "./MobileNavToggleButton";
 import { RailNavLink } from "./rail-nav-link";
 import { AdminNavSwitch } from "./AdminNavSwitch";
-import { UserMenu } from "./UserMenu";
 
 // A shell "única" deste tema: NÃO existe uma faixa de Header horizontal cobrindo o topo (como
 // todo outro tema neste repo) + uma Sidebar vertical por baixo dela como uma segunda região —
-// marca, navegação e usuário vivem juntos numa RAIL vertical só, de altura cheia, ao lado do
-// conteúdo (não embaixo de um header). Em telas estreitas (abaixo de lg) a rail vira o mesmo
-// drawer off-canvas de sempre (MobileNavDrawer, mecânica compartilhada — foco/scroll-lock não
-// precisam ser reinventados só porque o layout é outro), disparado por uma topbar fina que SÓ
-// existe no mobile (o desktop não tem barra de topo nenhuma).
+// marca e navegação vivem juntas numa RAIL vertical só, de altura cheia, ao lado do conteúdo
+// (não embaixo de um header). Em telas estreitas (abaixo de lg) a rail vira o mesmo drawer
+// off-canvas de sempre (MobileNavDrawer, mecânica compartilhada — foco/scroll-lock não precisam
+// ser reinventados só porque o layout é outro), disparado por uma topbar fina que SÓ existe no
+// mobile (o desktop não tem barra de topo nenhuma).
+//
+// Sem UserMenu (avatar + dropdown de conta) nem link "Entrar" — pedido explícito: site
+// deliberadamente público, sem superfície de conta na navegação; quem precisa da plataforma
+// digita /login direto. Quem já está logado (ex. admin chegando via /login) ainda vê o
+// AdminNavSwitch pra alternar site/admin, mas sign-out mora na própria página /admin (form
+// padrão do core, fora da shell), não aqui.
 export function Rail({
   header,
   sidebarLeft,
@@ -22,7 +27,7 @@ export function Rail({
   header: HeaderSlotProps;
   sidebarLeft: SidebarLeftSlotProps;
 }) {
-  const { brand, userbarEnabled, headerNavItems, user, canAccessAdmin, onSignOut } = header;
+  const { brand, headerNavItems } = header;
   const { enabled, navMode, navItems, navGroups, canToggleAdminNav, onToggleNavMode } = sidebarLeft;
   const isAdmin = navMode === "admin";
 
@@ -73,17 +78,11 @@ export function Rail({
             {!isAdmin && navItems.length === 0 && <p className="px-5 text-sm text-(--chrome-muted-foreground)">—</p>}
           </nav>
 
-          <div className="shrink-0 space-y-2 border-t border-(--chrome-border) px-3 py-3">
-            {canToggleAdminNav && <AdminNavSwitch isAdmin={isAdmin} onToggleNavMode={onToggleNavMode} />}
-            {userbarEnabled &&
-              (user ? (
-                <UserMenu user={user} canAccessAdmin={canAccessAdmin} onSignOut={onSignOut} />
-              ) : (
-                <Link href="/login" className="el-theme-quicklink block px-2 py-1.5 text-sm ui-motion-base outline-none">
-                  Entrar
-                </Link>
-              ))}
-          </div>
+          {canToggleAdminNav && (
+            <div className="shrink-0 border-t border-(--chrome-border) px-3 py-3">
+              <AdminNavSwitch isAdmin={isAdmin} onToggleNavMode={onToggleNavMode} />
+            </div>
+          )}
         </MobileNavDrawer>
       )}
     </>

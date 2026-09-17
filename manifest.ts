@@ -3,7 +3,12 @@ import type { ThemeManifest } from "@venore/theme-sdk";
 export const erastoLeagueManifest: ThemeManifest = {
   key: "erasto-league",
   name: "Erasto League",
-  version: "0.3.0",
+  // v0.4.0: shell sem UserMenu/dropdown de conta nem link "Entrar" (pedido explícito — site
+  // puramente público, voltado aos widgets do plugin; acesso à plataforma só via /login digitado
+  // direto, ver components/Rail.tsx). Extensão aditiva do contrato de slot (tema simplesmente
+  // ignora header.user/onSignOut/userNavItems — sancionado em contracts/types.ts), não muda
+  // themeContractVersion.
+  version: "0.4.0",
   // Contrato de slot atual do host (contexts/themes/contracts/contract-version.ts,
   // SUPPORTED_THEME_CONTRACT_RANGE "^6.0.0") — não "7.0.0" (essa era só o valor copiado do
   // Fearless sem checar contra o core desta instância, o que travava a ativação).
