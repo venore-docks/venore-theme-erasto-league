@@ -1,4 +1,5 @@
 import type { HeaderBrand } from "@venore/theme-sdk";
+import { isRecolorableBrandAsset } from "@venore/theme-sdk/ui";
 
 // Modo texto/svg/png, variante scrolled, posição — altura vem de --ui-control-height-lg
 // multiplicado pela porcentagem de size/scrolledSize, largura derivada por aspect-ratio.
@@ -37,7 +38,7 @@ export function PlatformBrand({
         ["--brand-scale-scrolled" as string]: scrolledSize / size,
       }}
     >
-      {mode === "svg" ? (
+      {mode === "svg" && isRecolorableBrandAsset(logoUrl) ? (
         <span
           aria-label={name}
           role="img"
