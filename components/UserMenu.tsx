@@ -38,7 +38,7 @@ export function UserMenu({ user, canAccessAdmin, onSignOut, userNavItems = [] }:
 
   return (
     <details ref={detailsRef} className="group relative">
-      <summary className="flex cursor-pointer list-none items-center gap-2 rounded-xl px-1.5 py-1 ui-motion-base outline-none hover:bg-accent/14 active:bg-accent/14 focus-visible:ring-2 focus-visible:ring-ring group-data-[scrolled=true]/header:hover:bg-primary-foreground/10 group-data-[scrolled=true]/header:active:bg-primary-foreground/10 [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center gap-2 rounded-xl px-1.5 py-1 text-(--chrome-foreground) ui-motion-base outline-none hover:bg-(--chrome-bg-elevated) active:bg-(--chrome-bg-elevated) focus-visible:ring-2 focus-visible:ring-(--chrome-accent) [&::-webkit-details-marker]:hidden">
         <Avatar>
           {user.imageUrl ? <AvatarImage src={user.imageUrl} alt={user.displayName} /> : null}
           <AvatarFallback>{initials(user.displayName)}</AvatarFallback>

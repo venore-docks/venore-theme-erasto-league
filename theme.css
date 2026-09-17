@@ -1,13 +1,14 @@
-/* Erasto League — tema esportivo/premium do Venore Docks, feito pro site do campeonato interno
-   (venore-plugin-erasto-league). Identidade: verde de campo (--primary) + dourado de troféu
-   (--accent) sob um fundo quase-preto no dark mode (mesma estética "transmissão ao vivo" já usada
-   no controle/overlay/TV do plugin — o site fica coerente com os widgets, não só ao lado deles).
-   Elementos: botão em pílula com brilho, faixa de "linha de campo" no topo dos cards, textura de
-   grama listrada no fundo — igual ao Fearless (weave de lona) e ao Knights (bevel), a identidade
-   vem dos ELEMENTOS, não de gradiente solto. */
+/* Erasto League — tema esportivo/premium do Venore Docks, DESENHADO a partir do brasão do
+   campeonato (navy + dourado + bola de futebol, faixa "FUTSAL"). Diferente da primeira versão
+   (que só reskinava a shell genérica dos outros temas): aqui o header/sidebar/footer são um
+   "CHROME" próprio — navy + dourado FIXO, não amarrado a light/dark — enquanto o conteúdo (a
+   coluna central onde os widgets do plugin vivem) respeita o modo de cor normalmente. É a mesma
+   lógica de uma braçadeira/uniforme de time: a identidade do clube não muda com a luz do
+   estádio. Variáveis --chrome-* só existem aqui (não é vocabulário shadcn) — Header/Sidebar/
+   Footer deste tema leem só elas. */
 
 [data-theme="erasto-league"] {
-  --radius: 0.55rem;
+  --radius: 0.5rem;
   --radius-shell: 0rem;
   --radius-panel: 0.75rem;
   --ui-radius-scale-sm: 0.7;
@@ -48,46 +49,50 @@
   --ui-panel-padding-x: 1.5rem;
   --ui-panel-padding-y: 1.5rem;
 
-  /* claro — "dia de jogo": branco/cinza claro esverdeado, verde de campo como primary,
-     dourado de troféu como accent. */
-  --background: oklch(0.98 0.006 155);
-  --foreground: oklch(0.2 0.02 250);
-  --card: oklch(0.995 0.003 155);
-  --card-foreground: oklch(0.2 0.02 250);
-  --popover: oklch(0.995 0.003 155);
-  --popover-foreground: oklch(0.2 0.02 250);
-  --primary: oklch(0.5 0.16 149);
-  --primary-foreground: oklch(0.99 0.006 150);
-  --secondary: oklch(0.93 0.012 155);
-  --secondary-foreground: oklch(0.26 0.02 250);
-  --muted: oklch(0.93 0.012 155);
-  --muted-foreground: oklch(0.48 0.02 250);
-  --accent: oklch(0.8 0.15 85);
-  --accent-foreground: oklch(0.22 0.06 70);
+  /* "CHROME" — navy + dourado do brasão, CONSTANTE (mesmo valor no bloco .dark abaixo). Header,
+     Sidebar e Footer deste tema usam só estas variáveis, nunca --background/--foreground. */
+  --chrome-bg: oklch(0.28 0.06 254);
+  --chrome-bg-elevated: oklch(0.34 0.065 254);
+  --chrome-bg-admin: oklch(0.23 0.055 254);
+  --chrome-foreground: oklch(0.97 0.008 90);
+  --chrome-muted-foreground: oklch(0.72 0.03 250);
+  --chrome-border: oklch(0.38 0.06 254);
+  --chrome-accent: oklch(0.78 0.15 75);
+  --chrome-accent-foreground: oklch(0.2 0.05 75);
+
+  /* claro — "dia de jogo": branco/cinza quente, navy como primary, dourado como accent. */
+  --background: oklch(0.98 0.004 90);
+  --foreground: oklch(0.22 0.04 254);
+  --card: oklch(0.995 0.002 90);
+  --card-foreground: oklch(0.22 0.04 254);
+  --popover: oklch(0.995 0.002 90);
+  --popover-foreground: oklch(0.22 0.04 254);
+  --primary: oklch(0.32 0.07 254);
+  --primary-foreground: oklch(0.98 0.006 90);
+  --secondary: oklch(0.93 0.008 90);
+  --secondary-foreground: oklch(0.26 0.045 254);
+  --muted: oklch(0.93 0.008 90);
+  --muted-foreground: oklch(0.48 0.03 254);
+  --accent: oklch(0.78 0.15 75);
+  --accent-foreground: oklch(0.22 0.06 75);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0.01 25);
-  --border: oklch(0.86 0.012 155);
-  --input: oklch(0.82 0.014 155);
-  --ring: oklch(0.6 0.15 149);
+  --border: oklch(0.86 0.01 90);
+  --input: oklch(0.82 0.012 90);
+  --ring: oklch(0.7 0.13 75);
 
-  --shadow-color: oklch(0.3 0.03 155);
-  --shadow-color-strong: oklch(0.18 0.03 155);
+  --shadow-color: oklch(0.28 0.05 254);
+  --shadow-color-strong: oklch(0.16 0.045 254);
   --shadow-color-soft: color-mix(in oklch, var(--shadow-color) 12%, transparent);
   --shadow-color-strong-soft: color-mix(in oklch, var(--shadow-color-strong) 16%, transparent);
   --shadow-panel: 0 1px 2px -1px var(--shadow-color-strong-soft);
   --shadow-float: 0 8px 22px -10px var(--shadow-color-strong-soft);
-  --shadow-header: 0 1px 0 0 var(--border);
+  --shadow-header: 0 1px 0 0 var(--chrome-border);
 
-  --sidebar-width: 16rem;
-  --sidebar-bg-start: oklch(0.955 0.014 155);
-  --sidebar-bg-end: oklch(0.955 0.014 155);
-  --sidebar-bg: var(--sidebar-bg-start);
-  --sidebar-bg-admin-start: oklch(0.94 0.018 155);
-  --sidebar-bg-admin-end: oklch(0.94 0.018 155);
-  --sidebar-bg-admin: var(--sidebar-bg-admin-start);
+  --sidebar-width: 17rem;
 
-  --warning: oklch(0.78 0.15 85);
-  --warning-foreground: oklch(0.2 0.05 85);
+  --warning: oklch(0.78 0.15 75);
+  --warning-foreground: oklch(0.2 0.05 75);
   --warning-soft: color-mix(in oklch, var(--warning) 12%, var(--card));
   --warning-border: color-mix(in oklch, var(--warning) 30%, var(--border));
 
@@ -106,75 +111,66 @@
 
   --overlay-foreground: oklch(1 0 0);
 
-  --presentation-ground: oklch(0.15 0.02 155);
-  --presentation-card: oklch(0.19 0.022 155);
-  --presentation-border: oklch(0.32 0.03 155);
-  --presentation-foreground: oklch(0.95 0.012 145);
-  --presentation-muted-foreground: oklch(0.72 0.02 155);
+  --presentation-ground: oklch(0.15 0.03 254);
+  --presentation-card: oklch(0.19 0.032 254);
+  --presentation-border: oklch(0.32 0.045 254);
+  --presentation-foreground: oklch(0.95 0.012 90);
+  --presentation-muted-foreground: oklch(0.72 0.025 254);
   --presentation-success: oklch(0.66 0.16 149);
   --presentation-success-soft: color-mix(in oklch, var(--presentation-success) 16%, var(--presentation-card));
   --presentation-success-border: color-mix(in oklch, var(--presentation-success) 34%, var(--presentation-border));
-  --presentation-warning: oklch(0.78 0.14 85);
+  --presentation-warning: oklch(0.78 0.14 75);
   --presentation-warning-soft: color-mix(in oklch, var(--presentation-warning) 16%, var(--presentation-card));
   --presentation-warning-border: color-mix(in oklch, var(--presentation-warning) 34%, var(--presentation-border));
   --presentation-destructive: oklch(0.62 0.2 28);
   --presentation-renewed: oklch(0.6 0.13 200);
-  --presentation-new: oklch(0.78 0.14 85);
+  --presentation-new: oklch(0.78 0.14 75);
 
-  /* identidade — textura de grama listrada (bandas alternadas, mowed-lawn), não é gradiente. */
-  --app-bg-start: oklch(0.965 0.01 155);
-  --app-bg-end: oklch(0.965 0.01 155);
+  /* identidade — textura de grama listrada bem sutil (bandas alternadas), não é gradiente. */
+  --app-bg-start: oklch(0.965 0.01 90);
+  --app-bg-end: oklch(0.965 0.01 90);
   --app-background: var(--background)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='64'%3E%3Crect width='2' height='32' fill='%2316a34a' fill-opacity='0.035'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='64'%3E%3Crect width='2' height='32' fill='%23123a5c' fill-opacity='0.025'/%3E%3C/svg%3E")
     repeat;
 }
 
 [data-theme="erasto-league"].dark {
-  /* escuro — "transmissão ao vivo": quase preto/marinho, mesmo verde do overlay/controle/TV do
-     plugin (--primary aqui ≈ --accent default do plugin, #22c55e) pra o site ficar coerente com
-     os widgets, não só do lado deles. */
-  --background: oklch(0.15 0.018 250);
-  --foreground: oklch(0.95 0.008 145);
-  --card: oklch(0.19 0.02 250);
-  --card-foreground: oklch(0.95 0.008 145);
-  --popover: oklch(0.19 0.02 250);
-  --popover-foreground: oklch(0.95 0.008 145);
-  --primary: oklch(0.72 0.19 149.6);
-  --primary-foreground: oklch(0.14 0.03 150);
-  --secondary: oklch(0.25 0.02 250);
-  --secondary-foreground: oklch(0.94 0.008 145);
-  --muted: oklch(0.25 0.02 250);
-  --muted-foreground: oklch(0.65 0.016 250);
-  --accent: oklch(0.82 0.15 85);
-  --accent-foreground: oklch(0.18 0.05 70);
+  /* escuro — mesmo chrome navy+dourado, conteúdo vira quase-preto azulado. */
+  --background: oklch(0.15 0.03 254);
+  --foreground: oklch(0.95 0.008 90);
+  --card: oklch(0.2 0.032 254);
+  --card-foreground: oklch(0.95 0.008 90);
+  --popover: oklch(0.2 0.032 254);
+  --popover-foreground: oklch(0.95 0.008 90);
+  --primary: oklch(0.78 0.15 75);
+  --primary-foreground: oklch(0.17 0.04 75);
+  --secondary: oklch(0.26 0.035 254);
+  --secondary-foreground: oklch(0.94 0.008 90);
+  --muted: oklch(0.26 0.035 254);
+  --muted-foreground: oklch(0.68 0.025 254);
+  --accent: oklch(0.82 0.14 75);
+  --accent-foreground: oklch(0.18 0.045 75);
   --destructive: oklch(0.65 0.22 27);
   --destructive-foreground: oklch(0.98 0.01 27);
-  --border: oklch(0.32 0.02 250);
-  --input: oklch(0.34 0.022 250);
-  --ring: oklch(0.74 0.18 149.6);
+  --border: oklch(0.33 0.035 254);
+  --input: oklch(0.35 0.038 254);
+  --ring: oklch(0.78 0.14 75);
 
-  --shadow-color: oklch(0.03 0.01 250);
-  --shadow-color-strong: oklch(0.015 0.006 250);
+  --shadow-color: oklch(0.03 0.015 254);
+  --shadow-color-strong: oklch(0.015 0.01 254);
   --shadow-color-soft: color-mix(in oklch, var(--shadow-color) 45%, transparent);
   --shadow-color-strong-soft: color-mix(in oklch, var(--shadow-color-strong) 42%, transparent);
   --shadow-panel: 0 1px 2px -1px var(--shadow-color-strong-soft);
   --shadow-float: 0 12px 30px -14px var(--shadow-color-strong-soft);
-  --shadow-header: 0 1px 0 0 var(--border);
+  --shadow-header: 0 1px 0 0 var(--chrome-border);
 
-  --sidebar-bg-start: oklch(0.13 0.02 250);
-  --sidebar-bg-end: oklch(0.13 0.02 250);
-  --sidebar-bg: var(--sidebar-bg-start);
-  --sidebar-bg-admin-start: oklch(0.115 0.022 250);
-  --sidebar-bg-admin-end: oklch(0.115 0.022 250);
-  --sidebar-bg-admin: var(--sidebar-bg-admin-start);
-
-  --warning: oklch(0.8 0.14 85);
-  --warning-foreground: oklch(0.17 0.03 85);
+  --warning: oklch(0.8 0.13 75);
+  --warning-foreground: oklch(0.17 0.03 75);
   --warning-soft: color-mix(in oklch, var(--warning) 16%, var(--card));
   --warning-border: color-mix(in oklch, var(--warning) 34%, var(--border));
 
-  --success: oklch(0.72 0.19 149.6);
-  --success-foreground: oklch(0.14 0.03 150);
+  --success: oklch(0.72 0.16 149);
+  --success-foreground: oklch(0.14 0.03 149);
   --success-soft: color-mix(in oklch, var(--success) 16%, var(--card));
   --success-border: color-mix(in oklch, var(--success) 34%, var(--border));
 
@@ -186,15 +182,16 @@
   --chart-6: oklch(0.62 0.13 220);
   --chart-7: oklch(0.68 0.15 40);
 
-  --app-bg-start: oklch(0.14 0.02 250);
-  --app-bg-end: oklch(0.14 0.02 250);
+  --app-bg-start: oklch(0.145 0.03 254);
+  --app-bg-end: oklch(0.145 0.03 254);
   --app-background: var(--background)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='64'%3E%3Crect width='2' height='32' fill='%2322c55e' fill-opacity='0.05'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='64'%3E%3Crect width='2' height='32' fill='%23f3a92a' fill-opacity='0.035'/%3E%3C/svg%3E")
     repeat;
 }
 
-/* elementos de identidade — pílula com brilho nos botões, "linha de campo" no topo dos cards,
-   base sublinhada em accent nos campos de formulário. Escopados ao tema. */
+/* elementos de identidade — pílula com brilho nos botões, "linha de campo" dourada no topo dos
+   cards, base sublinhada em accent nos campos de formulário, borda diagonal no cabeçalho
+   (echoing o topo em V do brasão). Escopados ao tema. */
 [data-theme="erasto-league"] [data-slot="button"] {
   border-radius: 999px;
   font-weight: var(--ui-font-weight-display);
@@ -206,15 +203,66 @@
 }
 [data-theme="erasto-league"] [data-slot="card"],
 [data-theme="erasto-league"] .rounded-panel {
-  border-top: 3px solid var(--primary);
+  border-top: 3px solid var(--accent);
 }
 [data-theme="erasto-league"] [data-slot="input"],
 [data-theme="erasto-league"] [data-slot="select-trigger"] {
   border-bottom-width: 2px;
-  border-bottom-color: color-mix(in oklch, var(--primary) 45%, var(--border));
+  border-bottom-color: color-mix(in oklch, var(--accent) 55%, var(--border));
 }
 [data-theme="erasto-league"] [data-slot="badge"] {
   font-weight: var(--ui-font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+/* Header/Sidebar/Footer deste tema (components/HeaderSlot.tsx, SidebarSlot.tsx, FooterSlot.tsx) —
+   classes próprias porque leem --chrome-*, não o vocabulário shadcn. */
+.el-theme-chrome-header {
+  background: var(--chrome-bg);
+  color: var(--chrome-foreground);
+  border-bottom: 3px solid var(--chrome-accent);
+}
+.el-theme-chrome-sidebar {
+  background: var(--chrome-bg);
+  color: var(--chrome-foreground);
+}
+.el-theme-chrome-sidebar.is-admin {
+  background: var(--chrome-bg-admin);
+}
+.el-theme-chrome-footer {
+  background: var(--chrome-bg);
+  color: var(--chrome-foreground);
+  border-top: 3px solid var(--chrome-accent);
+}
+.el-theme-brand-plate {
+  background: color-mix(in oklch, white 94%, var(--chrome-accent));
+  border-radius: 0.85rem;
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.5);
+}
+.el-theme-nav-link {
+  color: var(--chrome-muted-foreground);
+  font-weight: var(--ui-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid transparent;
+}
+.el-theme-nav-link:hover,
+.el-theme-nav-link[aria-current="page"] {
+  color: var(--chrome-foreground);
+  border-bottom-color: var(--chrome-accent);
+}
+.el-theme-sidebar-link {
+  color: var(--chrome-muted-foreground);
+  border-left: 3px solid transparent;
+}
+.el-theme-sidebar-link:hover {
+  color: var(--chrome-foreground);
+  background: var(--chrome-bg-elevated);
+}
+.el-theme-sidebar-link[aria-current="page"],
+.el-theme-sidebar-link[data-active-ancestor="true"] {
+  color: var(--chrome-foreground);
+  background: var(--chrome-bg-elevated);
+  border-left-color: var(--chrome-accent);
 }

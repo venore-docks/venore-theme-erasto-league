@@ -22,8 +22,12 @@ export function AdminNavSwitch({ isAdmin, onToggleNavMode }: { isAdmin: boolean;
   return (
     <form ref={formRef} action={onToggleNavMode} className="w-full px-1">
       <div className="flex w-full items-center gap-2.5 rounded-md px-2 py-1.5">
-        {isAdmin ? <ShieldCheck className="size-4 shrink-0 text-accent" aria-hidden="true" /> : <Globe2 className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />}
-        <label htmlFor={id} className="flex-1 cursor-pointer truncate text-sm font-medium text-foreground">
+        {isAdmin ? (
+          <ShieldCheck className="size-4 shrink-0 text-(--chrome-accent)" aria-hidden="true" />
+        ) : (
+          <Globe2 className="size-4 shrink-0 text-(--chrome-muted-foreground)" aria-hidden="true" />
+        )}
+        <label htmlFor={id} className="flex-1 cursor-pointer truncate text-sm font-semibold text-(--chrome-foreground)">
           {isAdmin ? "Admin" : "Site"}
         </label>
         <Switch

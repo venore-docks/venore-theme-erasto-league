@@ -1,6 +1,6 @@
 {
   "name": "@venore/theme-erasto-league",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Erasto League — tema esportivo/premium do Venore Docks, feito pro site do campeonato interno.",
   "private": true,
   "type": "module",
