@@ -1,17 +1,12 @@
 import type { ThemeShellProps } from "@venore/theme-sdk";
 import { ContentSlot } from "./ContentSlot";
 import { FooterSlot } from "./FooterSlot";
-import { HeaderSlot } from "./HeaderSlot";
-import { SidebarSlot } from "./SidebarSlot";
+import { Rail } from "./Rail";
 
-// Header full-width no topo, Sidebar fixa (sem colapso), Footer full-width por baixo de tudo
-// (inclusive da sidebar) — Header/Sidebar/Footer formam um "chrome" navy+dourado PRÓPRIO
-// (--chrome-*, theme.css), desenhado a partir do brasão do Erasto League, constante independente
-// do modo claro/escuro (como um uniforme não muda com a luz do estádio). Só o conteúdo central
-// (onde os widgets do plugin vivem) respeita light/dark normalmente. Arranjo de regiões
-// deliberadamente convencional — a originalidade está na pele (cor/forma/tipografia), não em
-// reinventar onde cada região fica, pra não competir com os widgets do plugin (agenda de jogos,
-// classificação, ad do próximo jogo) que já carregam identidade visual forte.
+// Shell própria deste tema: uma RAIL vertical única (marca + navegação + usuário, ver Rail.tsx)
+// ao lado do conteúdo, em vez do padrão "Header horizontal no topo + Sidebar vertical por baixo
+// dele" que os outros temas deste repo usam. Rodapé só sob a coluna de conteúdo (não some atrás
+// da rail) — a rail acompanha a altura da página inteira, como uma lombada de livro.
 export function Shell({
   header,
   footer,
@@ -23,10 +18,9 @@ export function Shell({
   breadcrumbsJsonLd,
 }: ThemeShellProps) {
   return (
-    <div className="flex min-h-full flex-1 flex-col">
-      <HeaderSlot {...header} />
-      <div className="flex flex-1">
-        <SidebarSlot {...sidebarLeft} />
+    <div className="flex min-h-full flex-1 flex-col lg:flex-row">
+      <Rail header={header} sidebarLeft={sidebarLeft} />
+      <div className="flex min-w-0 flex-1 flex-col">
         <ContentSlot
           sidebarContextualEnabled={sidebarContextualEnabled}
           sidebarContextual={sidebarContextual}
@@ -35,8 +29,8 @@ export function Shell({
         >
           {children}
         </ContentSlot>
+        <FooterSlot {...footer} />
       </div>
-      <FooterSlot {...footer} />
     </div>
   );
 }

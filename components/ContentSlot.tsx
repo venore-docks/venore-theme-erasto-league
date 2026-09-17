@@ -5,7 +5,7 @@ export function ContentSlot({ children, sidebarContextualEnabled, sidebarContext
   const showAside = sidebarContextualEnabled && sidebarContextual != null;
 
   return (
-    <div data-sidebar-contextual={showAside} className="min-w-0 flex-1 bg-(image:--app-background)">
+    <div data-sidebar-contextual={showAside} className="min-w-0 flex-1 bg-(--app-background)">
       <Breadcrumbs breadcrumbs={breadcrumbs} breadcrumbsJsonLd={breadcrumbsJsonLd} />
       <div className={`mx-auto flex w-full max-w-6xl gap-8 px-6 py-8 ${showAside ? "flex-col lg:flex-row" : ""}`}>
         <main className="min-w-0 flex-1 text-foreground">{children}</main>
