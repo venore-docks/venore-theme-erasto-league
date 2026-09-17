@@ -1,9 +1,14 @@
-/* Erasto League — v2: shell própria (rail única, não header+sidebar como duas faixas — ver
-   components/Rail.tsx) e paleta MONOCROMÁTICA puxada pro azul, não mais navy+dourado de duas
-   cores (aquilo lia como "casa de aposta" — pedido explícito desta sessão). Mesmo espírito
-   monocromático do Fearless (primary quase-preto/quase-branco que INVERTE por modo, um accent
-   só usado com parcimônia) — só que a família de cor é azul em vez de pedra/latão, e o accent é
-   um azul só, não dourado. */
+/* Erasto League — v3: paleta reconectada ao BRASÃO (navy + dourado da bola/faixa "FUTSAL"),
+   depois do feedback de que a v2 monocromática (só azul, sem dourado) "não conversava com a
+   logo". Isto NÃO é a v0.2.0 revivida sem crítica: aquela versão usava dourado como --primary no
+   dark mode (texto/botão default virava dourado em cima de fundo escuro), botão em pílula com
+   glow, faixa dourada no topo de todo card e textura de fundo — o combo era o que lia como "casa
+   de aposta", não a cor em si. Aqui a estrutura de v2 é mantida (primary continua uma família
+   NEUTRA que INVERTE por modo — quase-navy no claro, quase-branco no escuro — sem textura, sem
+   pílula, sem glow) e só os HUES trocam: navy (h254) em vez de azul genérico (h255) pro fundo/
+   chrome/primary, dourado (h75) como o ÚNICO accent, usado com a mesma parcimônia de antes (foco/
+   hover/estado ativo) — nunca espalhado em botão/card/input. Hex de referência do brasão:
+   navy #123a5c, dourado #f3a92a (mesmos tons já extraídos da arte em v0.2.0). */
 
 [data-theme="erasto-league"] {
   --radius: 0.5rem;
@@ -47,41 +52,43 @@
   --ui-panel-padding-x: 1.5rem;
   --ui-panel-padding-y: 1.5rem;
 
-  /* "rail" — a nav única (marca + navegação + usuário, ver components/Rail.tsx) tem tom PRÓPRIO,
-     constante entre light/dark (mesma família azul-monocromática, só mais escura — não é uma
-     segunda cor de marca, é o mesmo azul em outra luminosidade). */
-  --chrome-bg: oklch(0.2 0.026 254);
-  --chrome-bg-elevated: oklch(0.26 0.028 254);
-  --chrome-bg-admin: oklch(0.155 0.024 254);
-  --chrome-foreground: oklch(0.95 0.006 254);
-  --chrome-muted-foreground: oklch(0.62 0.02 254);
-  --chrome-border: oklch(0.3 0.026 254);
-  --chrome-accent: oklch(0.68 0.15 255);
-  --chrome-accent-foreground: oklch(0.98 0.012 255);
+  /* "rail" — a nav única (marca + navegação, ver components/Rail.tsx) tem tom PRÓPRIO, constante
+     entre light/dark: o navy do brasão, sempre escuro (não é uma segunda cor de marca, é a MESMA
+     família usada no --primary abaixo, só sempre na variante escura). Accent do chrome é o
+     dourado do brasão — indicador de item ativo/hover, não preenchimento. */
+  --chrome-bg: oklch(0.28 0.075 254);
+  --chrome-bg-elevated: oklch(0.33 0.078 254);
+  --chrome-bg-admin: oklch(0.22 0.068 254);
+  --chrome-foreground: oklch(0.97 0.008 90);
+  --chrome-muted-foreground: oklch(0.7 0.03 254);
+  --chrome-border: oklch(0.4 0.075 254);
+  --chrome-accent: oklch(0.78 0.15 75);
+  --chrome-accent-foreground: oklch(0.2 0.05 75);
 
-  /* claro — quase monocromático: cinza-azulado neutro, primary quase-preto, UM azul de accent. */
-  --background: oklch(0.985 0.003 250);
-  --foreground: oklch(0.22 0.02 250);
-  --card: oklch(0.995 0.002 250);
-  --card-foreground: oklch(0.22 0.02 250);
-  --popover: oklch(0.995 0.002 250);
-  --popover-foreground: oklch(0.22 0.02 250);
-  --primary: oklch(0.28 0.03 250);
-  --primary-foreground: oklch(0.97 0.004 250);
-  --secondary: oklch(0.93 0.006 250);
-  --secondary-foreground: oklch(0.26 0.024 250);
-  --muted: oklch(0.93 0.006 250);
-  --muted-foreground: oklch(0.48 0.018 250);
-  --accent: oklch(0.6 0.16 255);
-  --accent-foreground: oklch(0.98 0.012 255);
+  /* claro — fundo em shades de navy (não mais neutro genérico), primary é o navy do brasão,
+     dourado é o ÚNICO accent (link, foco, indicador ativo — nunca preenchimento de botão/card). */
+  --background: oklch(0.975 0.009 254);
+  --foreground: oklch(0.22 0.045 254);
+  --card: oklch(0.995 0.006 254);
+  --card-foreground: oklch(0.22 0.045 254);
+  --popover: oklch(0.995 0.006 254);
+  --popover-foreground: oklch(0.22 0.045 254);
+  --primary: oklch(0.3 0.07 254);
+  --primary-foreground: oklch(0.98 0.008 90);
+  --secondary: oklch(0.93 0.014 254);
+  --secondary-foreground: oklch(0.26 0.05 254);
+  --muted: oklch(0.93 0.014 254);
+  --muted-foreground: oklch(0.48 0.035 254);
+  --accent: oklch(0.78 0.15 75);
+  --accent-foreground: oklch(0.2 0.05 75);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.98 0.01 25);
-  --border: oklch(0.87 0.008 250);
-  --input: oklch(0.83 0.01 250);
-  --ring: oklch(0.6 0.16 255);
+  --border: oklch(0.85 0.018 254);
+  --input: oklch(0.8 0.022 254);
+  --ring: oklch(0.78 0.15 75);
 
-  --shadow-color: oklch(0.3 0.02 250);
-  --shadow-color-strong: oklch(0.18 0.018 250);
+  --shadow-color: oklch(0.28 0.045 254);
+  --shadow-color-strong: oklch(0.16 0.04 254);
   --shadow-color-soft: color-mix(in oklch, var(--shadow-color) 10%, transparent);
   --shadow-color-strong-soft: color-mix(in oklch, var(--shadow-color-strong) 14%, transparent);
   --shadow-panel: 0 1px 2px -1px var(--shadow-color-strong-soft);
@@ -101,7 +108,7 @@
   --success-border: color-mix(in oklch, var(--success) 30%, var(--border));
 
   --chart-1: var(--accent);
-  --chart-2: oklch(0.6 0.02 250);
+  --chart-2: oklch(0.55 0.05 254);
   --chart-3: var(--muted-foreground);
   --chart-4: var(--warning);
   --chart-5: var(--destructive);
@@ -110,11 +117,11 @@
 
   --overlay-foreground: oklch(1 0 0);
 
-  --presentation-ground: oklch(0.15 0.026 250);
-  --presentation-card: oklch(0.19 0.028 250);
-  --presentation-border: oklch(0.32 0.03 250);
-  --presentation-foreground: oklch(0.95 0.01 250);
-  --presentation-muted-foreground: oklch(0.72 0.02 250);
+  --presentation-ground: oklch(0.15 0.04 254);
+  --presentation-card: oklch(0.19 0.042 254);
+  --presentation-border: oklch(0.33 0.05 254);
+  --presentation-foreground: oklch(0.95 0.012 90);
+  --presentation-muted-foreground: oklch(0.72 0.025 254);
   --presentation-success: oklch(0.66 0.14 149);
   --presentation-success-soft: color-mix(in oklch, var(--presentation-success) 16%, var(--presentation-card));
   --presentation-success-border: color-mix(in oklch, var(--presentation-success) 34%, var(--presentation-border));
@@ -122,38 +129,42 @@
   --presentation-warning-soft: color-mix(in oklch, var(--presentation-warning) 16%, var(--presentation-card));
   --presentation-warning-border: color-mix(in oklch, var(--presentation-warning) 34%, var(--presentation-border));
   --presentation-destructive: oklch(0.62 0.2 28);
-  --presentation-renewed: oklch(0.68 0.15 255);
+  --presentation-renewed: oklch(0.68 0.15 254);
   --presentation-new: oklch(0.78 0.13 75);
 
-  /* sem textura — flat, "moderno" é o oposto de decorar o fundo (pedido explícito). */
+  /* sem textura — flat, "moderno" é o oposto de decorar o fundo (pedido explícito de uma sessão
+     anterior, continua valendo: a identidade vem da COR navy+dourado, não de padronagem). */
   --app-bg-start: var(--background);
   --app-bg-end: var(--background);
   --app-background: var(--background);
 }
 
 [data-theme="erasto-league"].dark {
-  --background: oklch(0.16 0.022 250);
-  --foreground: oklch(0.95 0.006 250);
-  --card: oklch(0.205 0.024 250);
-  --card-foreground: oklch(0.95 0.006 250);
-  --popover: oklch(0.205 0.024 250);
-  --popover-foreground: oklch(0.95 0.006 250);
-  --primary: oklch(0.88 0.006 250);
-  --primary-foreground: oklch(0.18 0.02 250);
-  --secondary: oklch(0.27 0.024 250);
-  --secondary-foreground: oklch(0.94 0.006 250);
-  --muted: oklch(0.27 0.024 250);
-  --muted-foreground: oklch(0.66 0.018 250);
-  --accent: oklch(0.68 0.15 255);
-  --accent-foreground: oklch(0.16 0.03 255);
+  --background: oklch(0.185 0.042 254);
+  --foreground: oklch(0.95 0.008 90);
+  --card: oklch(0.235 0.045 254);
+  --card-foreground: oklch(0.95 0.008 90);
+  --popover: oklch(0.235 0.045 254);
+  --popover-foreground: oklch(0.95 0.008 90);
+  /* primary continua a família NEUTRA que inverte por modo (quase-branco aqui), não dourado —
+     é a diferença central vs. v0.2.0: dourado fica só em --accent/--ring/--chrome-accent, nunca
+     em botão/texto default, senão o dark mode inteiro "pinta de dourado" (o efeito cassino). */
+  --primary: oklch(0.88 0.022 254);
+  --primary-foreground: oklch(0.18 0.038 254);
+  --secondary: oklch(0.3 0.038 254);
+  --secondary-foreground: oklch(0.94 0.008 90);
+  --muted: oklch(0.3 0.038 254);
+  --muted-foreground: oklch(0.68 0.026 254);
+  --accent: oklch(0.8 0.14 75);
+  --accent-foreground: oklch(0.18 0.045 75);
   --destructive: oklch(0.65 0.2 27);
   --destructive-foreground: oklch(0.98 0.01 27);
-  --border: oklch(0.32 0.022 250);
-  --input: oklch(0.34 0.024 250);
-  --ring: oklch(0.68 0.15 255);
+  --border: oklch(0.36 0.036 254);
+  --input: oklch(0.38 0.038 254);
+  --ring: oklch(0.8 0.14 75);
 
-  --shadow-color: oklch(0.03 0.012 250);
-  --shadow-color-strong: oklch(0.015 0.008 250);
+  --shadow-color: oklch(0.03 0.02 254);
+  --shadow-color-strong: oklch(0.015 0.015 254);
   --shadow-color-soft: color-mix(in oklch, var(--shadow-color) 42%, transparent);
   --shadow-color-strong-soft: color-mix(in oklch, var(--shadow-color-strong) 38%, transparent);
   --shadow-panel: 0 1px 2px -1px var(--shadow-color-strong-soft);
@@ -171,7 +182,7 @@
   --success-border: color-mix(in oklch, var(--success) 34%, var(--border));
 
   --chart-1: var(--accent);
-  --chart-2: oklch(0.6 0.016 250);
+  --chart-2: oklch(0.6 0.04 254);
   --chart-3: var(--muted-foreground);
   --chart-4: var(--warning);
   --chart-5: var(--destructive);
@@ -183,8 +194,9 @@
   --app-background: var(--background);
 }
 
-/* identidade — contida de propósito (pedido: "moderno", não decorado): cantos moderados, sombra
-   sutil, UM azul usado só em foco/hover/estado ativo. Nada de faixa colorida em todo card/botão. */
+/* identidade — contida de propósito (pedido de uma sessão anterior, continua valendo: "moderno",
+   não decorado): cantos moderados, sombra sutil, dourado usado só em foco/hover/estado ativo.
+   Nada de pílula, glow ou faixa colorida em todo card/botão (era o que lia como cassino). */
 [data-theme="erasto-league"] [data-slot="button"] {
   border-radius: calc(var(--radius) * 1.15);
   font-weight: var(--ui-font-weight-semibold);
