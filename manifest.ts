@@ -10,11 +10,14 @@ export const erastoLeagueManifest: ThemeManifest = {
   // plugin; acesso à plataforma só via /login digitado direto, ver components/Rail.tsx).
   // Extensão aditiva do contrato de slot (tema simplesmente ignora header.user/onSignOut/
   // userNavItems — sancionado em contracts/types.ts), não muda themeContractVersion.
-  version: "0.5.0",
-  // Contrato de slot atual do host (contexts/themes/contracts/contract-version.ts,
-  // SUPPORTED_THEME_CONTRACT_RANGE "^6.0.0") — não "7.0.0" (essa era só o valor copiado do
-  // Fearless sem checar contra o core desta instância, o que travava a ativação).
-  themeContractVersion: "6.0.0",
+  version: "0.5.2",
+  // "7.0.0": venore-docks (branch erasto-league) completou o rename HeaderSlotProps.messageAlert
+  // → notificationAlert e bumpou SUPPORTED_THEME_CONTRACT_RANGE pra "^7.0.0" — o valor "6.0.0"
+  // anterior (deliberado, não esquecido: "7.0.0" copiado do Fearless sem checar contra o core
+  // desta instância travava a ativação) ficou desatualizado assim que o core alcançou o mesmo
+  // contrato. Este tema não usa notificationAlert (sem HeaderSlot.tsx próprio — ver components/
+  // Shell.tsx/Rail.tsx), então o bump é só de declaração de compatibilidade.
+  themeContractVersion: "7.0.0",
   // "png", não "svg": o brasão do Erasto League (erasto_league.png) é colorido — modo "svg"
   // trataria o arquivo como silhueta monocromática (maskImage + currentColor) e perderia as
   // cores reais. A marca usa o logo real do site (brand.logoUrl de contexts/settings,
